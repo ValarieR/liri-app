@@ -8,8 +8,8 @@ var twitterKeys = {
 };
 
 var spotifyKeys = new Spotify({
-  id: <your spotify client id>,
-  secret: <your spotify client secret>
+  id: '2c064bfc340243c68639db5b0b2f8932',
+  secret: '28fc6fc9b1a5493c9fa57695cb52b584'
 });
 
 module.exports = twitterKeys;

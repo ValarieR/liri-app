@@ -29,14 +29,16 @@ twitClient.get('search/tweets', params, function(error, tweets) {
   });
 }
 
-sspotClient.search({ type: 'track', query: input }, function(err, data) {
+spotClient.search({ type: 'track', query: input }, function(err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
   else {
-    
+    .request(data.????????????????????)
+    .then(function(data) {
+    console.log(data);
+  })
   }
-console.log(data);
 });
 
 
