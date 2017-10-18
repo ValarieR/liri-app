@@ -15,18 +15,22 @@ function doStuff() {
   switch (command) {
 
     case 'my-tweets':
+      console.log("my-tweets chosen");
       fetchTweets();
       break;
 
     case 'spotify-this-song':
+      console.log("spotify-this-song chosen");
       spotifySongs();
       break;
 
     case 'movie-this':
+      console.log("movie-this chosen");
       getMovieInfo();
       break;
 
     case 'do-what-it-says':
+      console.log("do-what-it-says chosen");
       not sure yet;
       break;
 
