@@ -1,7 +1,13 @@
+// Links keys file
 var keys = require('./keys');
-var command = process.argv[2];
+// Gets all input from user
+var input = process.argv;
+// takes the command from user input
+var command = process.argv[2].toLowerCase();
+// forms the other search terms into a variable
 var searchWords = process.argv.splice(3);
 
+// links the twitter info, links twitter keys
 var Twitter = require('twitter');
 var twitClient = new Twitter(keys.twitterKeys);
 
@@ -9,9 +15,13 @@ var twitClient = new Twitter(keys.twitterKeys);
 // var spotClient = new Spotify(keys.spotifyKeys);
 // var artistArray = [];
 
+//calls the primary function of the app
 doStuff();
 
+// defines which functions to call, based on user input
 function doStuff() {
+  console.log("We did stuff");
+
   switch (command) {
 
     case 'my-tweets':
