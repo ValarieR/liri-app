@@ -9,6 +9,34 @@ var Spotify = require('node-spotify-api');
 var spotClient = new Spotify(keys.spotifyKeys);
 var artistArray = [];
 
+doStuff();
+
+function doStuff() {
+  switch (command) {
+
+    case 'my-tweets':
+      fetchTweets();
+      break;
+
+    case 'spotify-this-song':
+      spotifySongs();
+      break;
+
+    case 'movie-this':
+      getMovieInfo();
+      break;
+
+    case 'do-what-it-says':
+      not sure yet;
+      break;
+
+    default:
+      console.log(
+        "I don't understand. Try 'my-tweets,' 'spotify-this-song,' 'movie-this,' or 'do-what-it-says'"
+      );
+  }
+}
+
 // `my-tweets`
 
 function fetchTweets() {
@@ -33,20 +61,23 @@ function fetchTweets() {
       });
   }
 
-  spotClient.search({
-    type: 'track',
-    query: input,
-    limit: 20
-  }, function(err, data) {
-    if (err) {
-      return console.log('Error occurred: ' + err);
-    } else {
-      .request(data.artist, data.name);
-      .then(function(data) {
-        console.log(data);
-      });
-    }
-  });
+  function spotifySongs() {
+
+    spotClient.search({
+      type: 'track',
+      query: input,
+      limit: 20
+    }, function(err, data) {
+      if (err) {
+        return console.log('Error occurred: ' + err);
+      } else {
+        .request(data.artist, data.name);
+        .then(function(data) {
+          console.log(data);
+        });
+      }
+    });
+  }
 
 
 
