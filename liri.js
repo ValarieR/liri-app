@@ -7,6 +7,9 @@ var command = process.argv[2].toLowerCase();
 // forms the other search terms into a variable
 var searchWords = process.argv.splice(3);
 
+// gets file system
+var fs = require('fs');
+
 // links the twitter info, links twitter keys
 var Twitter = require('twitter');
 var twitClient = new Twitter(keys.twitterKeys);
@@ -55,18 +58,17 @@ function doStuff() {
 
 function fetchTweets() {
   var params = {
-    screen_name: 'GTBootCampGirl'
-  } && {
+    screen_name: 'GTBootCampGirl',
     count: 20
   };
 
-  twitClient.get('search/tweets', params, function(error, tweets) {
+  twitClient.get('statuses/user_timeline', params, function(error, tweets) {
     if (error) {
       return console.log("an error occurred: " + JSON.stringify(error));
     }
 
     if (tweets) {
-      for (var i = 0; i < tweets.statuses.length; i++) {
+      for (var i = 0; i < tweets.length; i++) {
         console.log("==============================");
         console.log("\n" + tweets[i].created_at + ":");
         console.log(tweets[i].text + "\n");
@@ -98,9 +100,20 @@ function fetchTweets() {
 //
 // }
 //
-// function doTheThang() {
-//
-// }
+function doTheThang() {
+  fs.readFile('random.txt', 'utf8', function(err, data) {
+    if (err) {
+      console.log("error");
+    } else {
+      input = data.split(",");
+      command = input[0];
+      searchWords = input[1];
+      doStuff();
+      console.log(data);
+
+    }
+  })
+}
 
 
 
