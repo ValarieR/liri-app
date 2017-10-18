@@ -14,9 +14,9 @@ var fs = require('fs');
 var Twitter = require('twitter');
 var twitClient = new Twitter(keys.twitterKeys);
 
-// var Spotify = require('node-spotify-api');
-// var spotClient = new Spotify(keys.spotifyKeys);
-// var artistArray = [];
+// links spotify info, and keys
+var Spotify = require('node-spotify-api');
+var spotClient = new Spotify(keys.spotifyKeys);
 
 //calls the primary function of the app
 doStuff();
@@ -78,28 +78,33 @@ function fetchTweets() {
   })
 }
 
-// function spotifySongs() {
-//
-//   spotClient.search({
-//     type: 'track',
-//     query: input,
-//     limit: 20
-//   }, function(err, data) {
-//     if (err) {
-//       return console.log('Error occurred: ' + err);
-//     } else {
-//       .request(data.artist, data.name);
-//       .then(function(data) {
-//         console.log(data);
-//       });
-//     }
-//   });
-// }
-//
-// function getMovieInfo() {
-//
-// }
-//
+function spotifySongs() {
+
+  spotClient.search({
+    type: 'track',
+    query: searchWords,
+    limit: 1
+  }, function(err, data) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
+    }
+
+    var songArtist = data.artists.name;
+    var songAlbum = data.album;
+    var songTitle = data.name;
+    var songLink = data.uri;
+
+    console.log("Artist: " + songArtist);
+    console.log("Album: " + songAlbum);
+    console.log("Title: " + songTitle);
+    console.log("Link: " + songLink);
+  });
+}
+
+function getMovieInfo() {
+
+}
+
 function doTheThang() {
   fs.readFile('random.txt', 'utf8', function(err, data) {
     if (err) {
