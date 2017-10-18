@@ -1,7 +1,10 @@
 var keys = require('./keys');
-var input = process.argv[3]
+var command = process.argv[2].toLowerCase();
+var searchWords = process.argv.splice(3);
+
 var Twitter = require('twitter');
 var twitClient = new Twitter(keys.twitterKeys);
+
 var Spotify = require('node-spotify-api');
 var spotClient = new Spotify(keys.spotifyKeys);
 var artistArray = [];
@@ -38,7 +41,7 @@ function fetchTweets() {
     if (err) {
       return console.log('Error occurred: ' + err);
     } else {
-      .request(data.artist, data.name, );
+      .request(data.artist, data.name);
       .then(function(data) {
         console.log(data);
       });
