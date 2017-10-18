@@ -90,6 +90,9 @@ function spotifySongs() {
   }, function(err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
+    }
+    if (searchWords.length === 0) {
+      searchWords = "the sign"
     } else {
       var songArtist = data.artists;
       var songAlbum = data.album;
@@ -111,7 +114,15 @@ function getMovieInfo() {
   if (searchWords.length === 0) {
     searchWords = 'mr+nobody'
   }
+  var queryURL = "http://www.omdbapi.com/?t=" + searchWords +
+    "&y=&plot=short&apikey=40e9cece";
+  request(queryURL, function(error, response) {
+    let movie = JSON.parse(response);
 
+    console.log("Title: " + movie.Title);
+    console.log("");
+
+  })
 }
 
 function doTheThang() {
