@@ -18,6 +18,9 @@ var twitClient = new Twitter(keys.twitterKeys);
 var Spotify = require('node-spotify-api');
 var spotClient = new Spotify(keys.spotifyKeys);
 
+// setting up OMDB stuff
+var request = require('request');
+
 //calls the primary function of the app
 doStuff();
 
@@ -87,21 +90,27 @@ function spotifySongs() {
   }, function(err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
+    } else {
+      var songArtist = data.artists;
+      var songAlbum = data.album;
+      var songTitle = data.name;
+      var songLink = data.uri;
+
+      console.log("Artist: " + JSON.stringify(songArtist));
+      console.log("Album: " + songAlbum);
+      console.log("Title: " + songTitle);
+      console.log("Link: " + songLink);
     }
 
-    var songArtist = data.artists.name;
-    var songAlbum = data.album;
-    var songTitle = data.name;
-    var songLink = data.uri;
-
-    console.log("Artist: " + songArtist);
-    console.log("Album: " + songAlbum);
-    console.log("Title: " + songTitle);
-    console.log("Link: " + songLink);
   });
 }
 
 function getMovieInfo() {
+  searchWords = searchWords.split(" "), join('+');
+
+  if (searchWords.length === 0) {
+    searchWords = 'mr+nobody'
+  }
 
 }
 
