@@ -83,29 +83,30 @@ function fetchTweets() {
 
 function spotifySongs() {
 
-  spotClient.search({
-    type: 'track',
-    query: searchWords,
-    limit: 1
-  }, function(err, data) {
-    if (err) {
-      return console.log('Error occurred: ' + err);
-    }
+  spotClient.search(
     if (searchWords.length === 0) {
       searchWords = "the sign"
-    } else {
-      var songArtist = data.artists;
-      var songAlbum = data.album;
-      var songTitle = data.name;
-      var songLink = data.uri;
+    }, {
+      type: 'track',
+      query: searchWords,
+      limit: 1
+    },
+    function(err, data) {
+      if (err) {
+        return console.log('Error occurred: ' + err);
+      } else {
+        var songArtist = data.artists;
+        var songAlbum = data.album;
+        var songTitle = data.name;
+        var songLink = data.uri;
 
-      console.log("Artist: " + JSON.stringify(songArtist));
-      console.log("Album: " + songAlbum);
-      console.log("Title: " + songTitle);
-      console.log("Link: " + songLink);
-    }
+        console.log("Artist: " + JSON.stringify(songArtist));
+        console.log("Album: " + songAlbum);
+        console.log("Title: " + songTitle);
+        console.log("Link: " + songLink);
+      }
 
-  });
+    });
 }
 
 function getMovieInfo() {
