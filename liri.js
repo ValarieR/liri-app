@@ -109,7 +109,7 @@ function spotifySongs() {
 }
 
 function getMovieInfo() {
-  searchWords = searchWords.split(" "), join('+');
+  let searchWords = searchWords.split("").join('+');
 
   if (searchWords.length === 0) {
     searchWords = 'mr+nobody'
