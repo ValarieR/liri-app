@@ -82,11 +82,10 @@ function fetchTweets() {
 }
 
 function spotifySongs() {
-
-  spotClient.search(
-    if (searchWords.length === 0) {
-      searchWords = "the sign"
-    }, {
+  if (searchWords.length === 0) {
+    searchWords = "the sign"
+  }
+  spotClient.search({
       type: 'track',
       query: searchWords,
       limit: 1
@@ -95,15 +94,17 @@ function spotifySongs() {
       if (err) {
         return console.log('Error occurred: ' + err);
       } else {
-        var songArtist = data.artists;
-        var songAlbum = data.album;
-        var songTitle = data.name;
-        var songLink = data.uri;
+
+        console.log(data);
+        var songArtist = data.tracks.artists;
+        var songAlbum = data.tracks.album;
+        var songTitle = data.tracks.name;
+        // var songLink = data.track.href;
 
         console.log("Artist: " + JSON.stringify(songArtist));
         console.log("Album: " + songAlbum);
         console.log("Title: " + songTitle);
-        console.log("Link: " + songLink);
+        // console.log("Link: " + songLink);
       }
 
     });

@@ -14,5 +14,3 @@ module.exports = {
     secret: '28fc6fc9b1a5493c9fa57695cb52b584'
   }
 };
-
-console.log(module.exports.twitterKeys);
